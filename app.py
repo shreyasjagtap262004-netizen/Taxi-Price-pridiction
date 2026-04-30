@@ -5,7 +5,7 @@ import numpy as np
 
 # Load the trained model
 def load_model():
-    # Referencing the file by its verbatim name
+    # Verify the file name matches your verbatim filename[cite: 1]
     with open('30aprilmodel.pkl', 'rb') as file:
         return pickle.load(file)
 
@@ -16,7 +16,6 @@ st.set_page_config(page_title="Taxi Fare Predictor", page_icon="🚖")
 st.title("🚖 Trip Fare Predictor")
 st.write("Enter the trip details below to estimate the fare.")
 
-# Create two columns for a cleaner layout
 col1, col2 = st.columns(2)
 
 with col1:
@@ -35,7 +34,6 @@ with col2:
 
 # Prediction Logic
 if st.button("Predict Fare"):
-    # Prepare the input data in the exact order the model expects
     input_data = pd.DataFrame([[
         trip_distance, time_of_day, day_of_week, passenger_count,
         traffic, weather, base_fare, km_rate, min_rate, duration
@@ -48,6 +46,8 @@ if st.button("Predict Fare"):
     # Generate prediction
     prediction = model.predict(input_data)
     
-    # FIX: Access the first element [0] to avoid the numpy formatting error
-    # and ensure the indentation is consistent to prevent IndentationErrors.
-    st.success(f"### Estimated Fare: ${prediction[0]:.2f}")
+    # ULTIMATE FIX: Flatten the array and convert to a basic Python float.
+    # This prevents the numpy.ndarray.__format__ error.
+    final_fare = float(np.ravel(prediction)[0])
+    
+    st.success(f"### Estimated Fare: ${final_fare:.2f}")
