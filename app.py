@@ -5,11 +5,14 @@ import numpy as np
 
 # Load the trained model
 def load_model():
+    # Fixed filename to match your exact file: 30aprilmodel.pkl
     with open('30aprilmodel.pkl', 'rb') as file:
         return pickle.load(file)
 
+# Initialize the model
 model = load_model()
 
+st.set_page_config(page_title="Taxi Fare Predictor", page_icon="🚖")
 st.title("🚖 Trip Fare Predictor")
 st.write("Enter the trip details below to estimate the fare.")
 
@@ -42,6 +45,8 @@ if st.button("Predict Fare"):
         'Per_Minute_Rate', 'Trip_Duration_Minutes'
     ])
     
+    # Generate prediction
     prediction = model.predict(input_data)
     
-   st.success(f"### Estimated Fare: ${prediction[0]:.2f}")
+    # FIXED: Added [0] to extract the value from the array and fixed indentation
+    st.success(f"### Estimated Fare: ${prediction[0]:.2f}")
