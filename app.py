@@ -5,7 +5,7 @@ import numpy as np
 
 # Load the trained model
 def load_model():
-    # Fixed filename to match your exact file: 30aprilmodel.pkl
+    # Referencing the file by its verbatim name
     with open('30aprilmodel.pkl', 'rb') as file:
         return pickle.load(file)
 
@@ -48,5 +48,6 @@ if st.button("Predict Fare"):
     # Generate prediction
     prediction = model.predict(input_data)
     
-    # FIXED: Added [0] to extract the value from the array and fixed indentation
+    # FIX: Access the first element [0] to avoid the numpy formatting error
+    # and ensure the indentation is consistent to prevent IndentationErrors.
     st.success(f"### Estimated Fare: ${prediction[0]:.2f}")
