@@ -5,7 +5,7 @@ import numpy as np
 
 # Load the trained model
 def load_model():
-    with open('model.pkl', 'rb') as file:
+    with open('30aprilmodel.pkl', 'rb') as file:
         return pickle.load(file)
 
 model = load_model()
