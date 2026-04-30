@@ -44,4 +44,4 @@ if st.button("Predict Fare"):
     
     prediction = model.predict(input_data)
     
-    st.success(f"### Estimated Fare: ${prediction[0]:.2f}")
+   st.success(f"### Estimated Fare: ${prediction[0]:.2f}")
