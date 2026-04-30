@@ -50,4 +50,4 @@ if st.button("Predict Fare"):
     # This prevents the numpy.ndarray.__format__ error.
     final_fare = float(np.ravel(prediction)[0])
     
-    st.success(f"### Estimated Fare: ${final_fare:.2f}")
+    st.success(f"### Estimated Fare: ₹{final_fare:.2f}")
